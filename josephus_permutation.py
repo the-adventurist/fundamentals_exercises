@@ -1,3 +1,4 @@
+# I myself haven't understood what I did here :D:):D:):D:)
 people = [x for x in input().split()]
 killed_people = []
 k = int(input())
