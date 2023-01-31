@@ -1,8 +1,4 @@
-text = [int(j) for j in input().split(", ")]
-
-for i in text:
-    if i == 0:
-        text.remove(i)
-        text.append(i)
-
-print(text)
+number = '123'
+number = [x for x in number]
+print(number)
+print(number[::-1])
