@@ -1,4 +1,6 @@
-number = '123'
-number = [x for x in number]
-print(number)
-print(number[::-1])
+import functools
+
+n1 = 5
+
+first_factorial = functools.reduce(lambda x, y: x * y, range(n1, 0, -1))
+print(first_factorial)

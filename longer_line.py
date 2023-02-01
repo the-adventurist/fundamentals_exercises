@@ -1,22 +1,33 @@
-from math import floor
+from math import floor, sqrt
 
 
-def longer_line(start_first_line_x, start_first_line_y, final_first_line_x, final_first_line_y,
-                start_second_line_x, start_second_line_y, final_second_line_x, final_second_line_y):
-    x1_s = abs(x1)
-    y1_s = abs(y1)
-    x1_f = abs(x2)
-    y1_f = abs(y2)
-    x2_s = abs(x1)
-    y2_s = abs(x1)
-    x2_f = abs(x1)
-    y2_f = abs(x1)
-    first_point_coordinates_distance = x_1 + y_1
-    second_point_coordinates_distance = x_2 + y_2
-    if first_point_coordinates_distance <= second_point_coordinates_distance:
-        return floor(x1), floor(y1)
+def distance(x1,y1, x2, y2):
+    current_distance = sqrt((x2 - x1)**2 + (y2 - y1)**2)
+    return current_distance
+
+
+x_1_first_line = float(input())
+y_1_first_line = float(input())
+x_2_first_line = float(input())
+y_2_first_line = float(input())
+x_1_second_line = float(input())
+y_1_second_line = float(input())
+x_2_second_line = float(input())
+y_2_second_line = float(input())
+
+first_line_length = distance(int(x_1_first_line), int(y_1_first_line), int(x_2_first_line), int(y_2_first_line))
+second_line_length = distance(int(x_1_second_line), int(y_1_second_line), int(x_2_second_line), int(y_2_second_line))
+coordinates_first_line_first_point = abs(int(x_1_first_line)) + abs(int(y_1_first_line))
+coordinates_first_line_second_point = abs(int(x_2_first_line)) + abs(int(y_2_first_line))
+coordinates_second_line_first_point = abs(int(x_1_second_line)) + abs(int(y_1_second_line))
+coordinates_second_line_second_point = abs(int(x_2_second_line)) + abs(int(y_2_second_line))
+if first_line_length >= second_line_length:
+    if coordinates_first_line_first_point <= coordinates_first_line_second_point:
+        print(f'({int(x_1_first_line)}, {int(y_1_first_line)})({int(x_2_first_line)}, {int(y_2_first_line)}')
     else:
-        return floor(x2), floor(y2)
-
-
-print(closer_point(float(input()), float(input()), float(input()), float(input())))
+        print(f'({int(x_2_first_line)}, {int(y_2_first_line)})({int(x_1_first_line)}, {int(x_1_first_line)})')
+else:
+    if coordinates_second_line_first_point <= coordinates_second_line_second_point:
+        print(f'({int(x_1_second_line)}, {int(y_1_second_line)})({int(x_2_second_line)}, {int(y_2_second_line)})')
+    else:
+        print(f'({int(x_2_second_line)}, {int(y_2_second_line)})({int(x_1_second_line)}, {int(y_1_second_line)})')
