@@ -15,19 +15,19 @@ y_1_second_line = float(input())
 x_2_second_line = float(input())
 y_2_second_line = float(input())
 
-first_line_length = distance(x_1_first_line, y_1_first_line, x_2_first_line, y_2_first_line)
-second_line_length = distance(x_1_second_line, y_1_second_line, x_2_second_line, y_2_second_line)
+first_line_length = distance(int(x_1_first_line), int(y_1_first_line), int(x_2_first_line), int(y_2_first_line))
+second_line_length = distance(int(x_1_second_line), int(y_1_second_line), int(x_2_second_line), int(y_2_second_line))
+coordinates_first_line_first_point = abs(int(x_1_first_line)) + abs(int(y_1_first_line))
+coordinates_first_line_second_point = abs(int(x_2_first_line)) + abs(int(y_2_first_line))
+coordinates_second_line_first_point = abs(int(x_1_second_line)) + abs(int(y_1_second_line))
+coordinates_second_line_second_point = abs(int(x_2_second_line)) + abs(int(y_2_second_line))
 if first_line_length >= second_line_length:
-    first_case_distance = distance(x_1_first_line, y_1_first_line, 0, 0)
-    second_case_distance = distance(x_2_first_line, y_2_first_line, 0, 0)
-    if first_case_distance < second_case_distance:
-        print(f'({x_1_first_line}, {y_1_first_line})({x_2_first_line}, {y_2_first_line}')
+    if coordinates_first_line_first_point <= coordinates_first_line_second_point:
+        print(f'({int(x_1_first_line)}, {int(y_1_first_line)})({int(x_2_first_line)}, {int(y_2_first_line)}')
     else:
-        print(f'({x_2_first_line}, {y_2_first_line})({x_1_first_line}, {x_1_first_line})')
+        print(f'({int(x_2_first_line)}, {int(y_2_first_line)})({int(x_1_first_line)}, {int(x_1_first_line)})')
 else:
-    first_case_distance = distance(x_1_second_line, y_1_second_line, 0, 0)
-    second_case_distance = distance(x_2_second_line, y_2_second_line, 0, 0)
-    if first_case_distance < second_case_distance:
-        print(f'({floor(x_1_second_line)}, {floor(y_1_second_line)})({floor(x_2_second_line)}, {floor(y_2_second_line)})')
+    if coordinates_second_line_first_point <= coordinates_second_line_second_point:
+        print(f'({int(x_1_second_line)}, {int(y_1_second_line)})({int(x_2_second_line)}, {int(y_2_second_line)})')
     else:
-        print(f'({floor(x_2_second_line)}, {floor(y_2_second_line)})({floor(x_1_second_line)}, {floor(y_1_second_line)})')
+        print(f'({int(x_2_second_line)}, {int(y_2_second_line)})({int(x_1_second_line)}, {int(y_1_second_line)})')
