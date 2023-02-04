@@ -1,22 +1,33 @@
-from math import floor
+from math import floor, sqrt
 
 
-def longer_line(start_first_line_x, start_first_line_y, final_first_line_x, final_first_line_y,
-                start_second_line_x, start_second_line_y, final_second_line_x, final_second_line_y):
-    x1_s = abs(x1)
-    y1_s = abs(y1)
-    x1_f = abs(x2)
-    y1_f = abs(y2)
-    x2_s = abs(x1)
-    y2_s = abs(x1)
-    x2_f = abs(x1)
-    y2_f = abs(x1)
-    first_point_coordinates_distance = x_1 + y_1
-    second_point_coordinates_distance = x_2 + y_2
-    if first_point_coordinates_distance <= second_point_coordinates_distance:
-        return floor(x1), floor(y1)
+def distance(x1,y1, x2, y2):
+    current_distance = sqrt((x2 - x1)**2 + (y2 - y1)**2)
+    return current_distance
+
+
+x_1_first_line = float(input())
+y_1_first_line = float(input())
+x_2_first_line = float(input())
+y_2_first_line = float(input())
+x_1_second_line = float(input())
+y_1_second_line = float(input())
+x_2_second_line = float(input())
+y_2_second_line = float(input())
+
+first_line_length = distance(x_1_first_line, y_1_first_line, x_2_first_line, y_2_first_line)
+second_line_length = distance(x_1_second_line, y_1_second_line, x_2_second_line, y_2_second_line)
+if first_line_length >= second_line_length:
+    first_case_distance = distance(x_1_first_line, y_1_first_line, 0, 0)
+    second_case_distance = distance(x_2_first_line, y_2_first_line, 0, 0)
+    if first_case_distance < second_case_distance:
+        print(f'({x_1_first_line}, {y_1_first_line})({x_2_first_line}, {y_2_first_line}')
     else:
-        return floor(x2), floor(y2)
-
-
-print(closer_point(float(input()), float(input()), float(input()), float(input())))
+        print(f'({x_2_first_line}, {y_2_first_line})({x_1_first_line}, {x_1_first_line})')
+else:
+    first_case_distance = distance(x_1_second_line, y_1_second_line, 0, 0)
+    second_case_distance = distance(x_2_second_line, y_2_second_line, 0, 0)
+    if first_case_distance < second_case_distance:
+        print(f'({floor(x_1_second_line)}, {floor(y_1_second_line)})({floor(x_2_second_line)}, {floor(y_2_second_line)})')
+    else:
+        print(f'({floor(x_2_second_line)}, {floor(y_2_second_line)})({floor(x_1_second_line)}, {floor(y_1_second_line)})')
