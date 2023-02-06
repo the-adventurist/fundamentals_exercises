@@ -1,11 +1,15 @@
-import functools
+def factorial_division(n):
+    if n == 1:
+        return 1
+    else:
+        return n * factorial_division(n - 1)
 
 
-def factorial_and_order_division(n1, n2):
-    first_factorial = functools.reduce(lambda x, y: x * y, range(n1, 0, -1))
-    second_factorial = functools.reduce(lambda x, y: x * y, range(n2, 0, -1))
-    result = f"{first_factorial / second_factorial:.2f}"
-    return result
+def order_division(n1, n2):
+    factorial_n1 = factorial_division(n1)
+    factorial_n2 = factorial_division(n2)
+    result_order_division = factorial_n1 / factorial_n2
+    return f'{result_order_division:.2f}'
 
 
-print(factorial_and_order_division(int(input()), int(input())))
+print(order_division(int(input()), int(input())))
