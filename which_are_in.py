@@ -1,11 +1,8 @@
 substrings = input().split(', ')
-strings = input().split(', ')
+strings = input()
 result_strings = []
 
 for substring in substrings:
-    for string in strings:
-        if substring in string:
-            result_strings.append(substring)
-            continue
-
+    if substring in strings:
+        result_strings.append(substring)
 print(result_strings)

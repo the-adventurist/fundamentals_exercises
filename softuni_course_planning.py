@@ -15,8 +15,8 @@ while changes != 'course start':
     elif change == 'Remove':
         if lesson in schedule:
             place_lesson = schedule.index(lesson)
-            if schedule[place_lesson + 1] == 'Exercise':
-                schedule.remove('Exercise')
+            if 'Exercise' in schedule[place_lesson + 1]:
+                schedule.pop(place_lesson + 1)
             schedule.remove(lesson)
     elif change == 'Swap':
         lesson_2 = changes_args[2]
@@ -32,17 +32,25 @@ while changes != 'course start':
             if not found_exercises:
                 schedule[place_lesson], schedule[place_lesson_2] = schedule[place_lesson_2], schedule[place_lesson]
             elif 1 in found_exercises and 2 not in found_exercises:
-                schedule[place_lesson], schedule[place_lesson_2] = schedule[place_lesson_2], schedule[place_lesson]
-                exercise_move = schedule.pop(place_lesson + 1)
-                new_place_lesson = schedule.index(schedule[place_lesson_2])
-                schedule.insert(new_place_lesson + 1, exercise_move)
+                pack_lesson_exercise = schedule[place_lesson] + ':' + schedule[place_lesson + 1]
+                schedule.insert(place_lesson, pack_lesson_exercise)
+                schedule.pop(place_lesson + 1)
+                schedule.pop(place_lesson + 1)
+                schedule[place_lesson], schedule[place_lesson_2 - 1] = schedule[place_lesson_2 - 1], schedule[place_lesson]
+                this_lesson, this_exercise = schedule[place_lesson_2 - 1].split(':')
+                schedule.pop(place_lesson_2 - 1)
+                schedule.insert(place_lesson_2 - 1, this_exercise)
+                schedule.insert(place_lesson_2 - 1, this_lesson)
             elif 2 in found_exercises and 1 not in found_exercises:
+                pack_lesson_exercise = schedule[place_lesson_2] + ':' + schedule[place_lesson_2 + 1]
+                schedule.insert(place_lesson_2, pack_lesson_exercise)
+                schedule.pop(place_lesson_2 + 1)
+                schedule.pop(place_lesson_2 + 1)
                 schedule[place_lesson], schedule[place_lesson_2] = schedule[place_lesson_2], schedule[place_lesson]
-                exercise_move = schedule.pop(place_lesson_2 + 1)
-                new_place_lesson = schedule.index(schedule[place_lesson])
-                schedule.insert(new_place_lesson + 1, exercise_move)
-                # schedule[place_lesson], schedule[place_lesson_2], schedule[place_lesson_2 + 1] =\
-                # schedule[place_lesson_2], schedule[place_lesson_2 + 1], schedule[place_lesson]
+                this_lesson, this_exercise = schedule[place_lesson].split(':')
+                schedule.pop(place_lesson)
+                schedule.insert(place_lesson, this_exercise)
+                schedule.insert(place_lesson, this_lesson)
             elif 1 in found_exercises and 2 in found_exercises:
                 schedule[place_lesson], schedule[place_lesson + 1], schedule[place_lesson_2], schedule[place_lesson_2 + 1] =\
                 schedule[place_lesson_2], schedule[place_lesson_2 + 1], schedule[place_lesson], schedule[place_lesson + 1]
