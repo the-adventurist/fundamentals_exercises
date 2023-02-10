@@ -22,8 +22,8 @@ number_of_iteration = len(take_list)
 for _ in range(number_of_iteration):
     taken_letters = take_list.pop(0)
     result += ''.join([x for x in non_numbers_list[:taken_letters]])
-    non_numbers_list = non_numbers_list[taken_letters + 1:]
+    non_numbers_list = non_numbers_list[taken_letters:]
     skipped_letters = skip_list.pop(0)
-    non_numbers_list = non_numbers_list[skipped_letters + 1:]
+    non_numbers_list = non_numbers_list[skipped_letters:]
 
 print(result)
